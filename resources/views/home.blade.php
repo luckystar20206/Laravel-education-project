@@ -10,7 +10,7 @@
 @section('nav')
     <ul>
         <li>Homepage</li>
-        <li><a href="{{url('/info')}}">Project info</a></li>
-        <li><a href="{{url('/news')}}">News</a></li>
+        <li><a href="{{route('info')}}">Project info</a></li>
+        <li><a href="{{route('news')}}">News</a></li>
     </ul>
 @endsection

@@ -51,6 +51,7 @@ main {
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin-top: 50px;
+    margin-bottom: 42px;
 }
 
 .new-card {
