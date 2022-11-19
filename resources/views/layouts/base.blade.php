@@ -16,8 +16,12 @@
         @show
     </header>
     <nav>
-        @section('nav')
-        @show
+        <ul>
+            <li><a href="{{route('home')}}">Homepage</a></li>
+            <li><a href="{{route('info')}}">Project info</a></li>
+            <li><a href="{{route('news.index')}}">News</a></li>
+            <li><a href="{{route('news.categories')}}">Categories</a></li>
+        </ul>
     </nav>
     @section('content')
     @show

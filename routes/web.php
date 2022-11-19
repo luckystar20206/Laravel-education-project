@@ -25,9 +25,19 @@ Route::name('admin.')
     ->namespace('Admin')
     ->group(function () {
         Route::get('/', [IndexController::class, 'index'])->name('index');
+        Route::get('/add', [IndexController::class, 'addNew'])->name('add');
     });
 
-Route::get('/news', [NewsController::class, 'index'])->name('news');
-Route::get('/news/{idx}', [NewsController::class, 'showOne'])->where('idx', '[0-9]+')->name('new');
+Route::name('news.')
+    ->prefix('news')
+    ->namespace('News')
+    ->group(function () {
+        Route::get('/', [NewsController::class, 'index'])->name('index');
+        Route::get('/{idx}', [NewsController::class, 'showOne'])->where('idx', '[0-9]+')->name('new');
+        Route::get('/categories', [NewsController::class, 'categories'])->name('categories');
+        Route::get('/categories/{idx}', [NewsController::class, 'category'])->where('idx', '[0-9]+')->name('category');
+    });
+
 Route::get('/info', [InfoController::class, 'index'])->name('info');
 Route::get('/welcome', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/login', [WelcomeController::class, 'login'])->name('login');

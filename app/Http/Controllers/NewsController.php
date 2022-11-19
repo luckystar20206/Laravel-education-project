@@ -11,7 +11,15 @@ class NewsController extends Controller
     {
         return view('news')->with('news', News::getNews());
     }
-
+    public function categories()
+    {
+        return view('categories')->with('categories', News::getCategories());
+    }
+    public function category($idx)
+    {
+        $news = News::getCategoryNews($idx);
+        return view('news')->with('news', $news);
+    }
     public function showOne($idx)
     {
         $new = News::getNew($idx);

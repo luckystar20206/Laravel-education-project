@@ -7,10 +7,3 @@
         Here, you can see some news of the day
     </h2>
 @endsection
-@section('nav')
-    <ul>
-        <li>Homepage</li>
-        <li><a href="{{route('info')}}">Project info</a></li>
-        <li><a href="{{route('news')}}">News</a></li>
-    </ul>
-@endsection
