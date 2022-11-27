@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.app')
 @section('header')
     <h2 class="header-description">
         Information of this project

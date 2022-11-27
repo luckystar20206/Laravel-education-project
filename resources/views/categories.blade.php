@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.app')
 @section('header')
     <h2 class="header-description">
         Here, you can see news categories
