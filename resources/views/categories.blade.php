@@ -9,7 +9,7 @@
         @foreach ($categories as $key => $el)
             <a href="{{route('news.category', $key)}}">
                 <li>
-                    {{$el}}
+                    {{$el['title']}}
                 </li>
             </a>
         @endforeach

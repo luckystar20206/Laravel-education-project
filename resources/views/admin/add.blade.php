@@ -7,23 +7,36 @@
 @section('content')
     <div class="container-sm">
         <h1>Add New</h1>
-        <form class="d-grid gap-4">
+        <form action="{{route('admin.add')}}" method="post">
+            @csrf
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" required>
+                <input name="title" type="text" class="form-control" id="title" placeholder="Enter title here" value="{{old('title')}}" required>
             </div>
             <div class="form-group">
+                <label for="newsCategory">Категория новости</label>
+                <select name="category" id="newsCategory" class="form-control">
+                    @forelse($categories as $item)
+                        <option @if ($item['id'] == old('category')) selected
+                                @endif value="{{ $item['id'] }}">{{ $item['title'] }}</option>
+                    @empty
+                        <option value="0" selected>Нет категории</option>
+                    @endforelse
+                </select>
+            </div>
+            <div class="form-group mt-2">
                 <label for="small-desc">Short Description</label>
-                <input type="text" class="form-control" id="small-desc" required>
+                <input name="small-desc" type="text" class="form-control" id="small-desc" placeholder="Enter short description here" value="{{old('small-desc')}}" required>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label for="img">Img Url</label>
-                <input type="text" class="form-control" id="img" required>
+                <input name="img" type="text" class="form-control" id="img" placeholder="Enter url link here" value="{{old('img')}}" required>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label for="desc">Full Description</label>
-                <textarea class="form-control" id="desc" rows="6"></textarea>
+                <textarea name="desc" class="form-control" id="desc" rows="6">{{old('desc')}}</textarea>
             </div>
+            <button type="submit" class="btn btn-primary mt-2">Add New</button>
         </form>
     </div>
 @endsection

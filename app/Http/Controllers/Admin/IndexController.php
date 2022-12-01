@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -11,8 +12,14 @@ class IndexController extends Controller
     {
         return view('admin.index');
     }
-    public function addNew()
+    public function addNew(Request $request, News $news)
     {
-        return view('admin.add');
+        if ($request->isMethod('post')) {
+            $request->flash();
+            return redirect()->route('admin.add');
+        }
+        return view('admin.add', [
+            'categories' => $news->getCategories()
+        ]);
     }
 }

@@ -30,7 +30,6 @@ header {
 nav {
     background-color: #e2e8f0;
     padding: 24px 48px;
-    margin-top: 24px;
     border-radius: 10px;
 }
 
@@ -42,7 +41,7 @@ nav > ul {
 }
 
 main {
-    margin-top: 48px;
+    margin-top: 24px;
     text-align: center;
 }
 

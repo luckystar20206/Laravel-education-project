@@ -5,12 +5,36 @@ namespace App\Models;
 class News
 {
     private static array $categories = [
-        0 => 'IT',
-        1 => 'Technique',
-        2 => 'Computers',
-        3 => 'Design',
-        4 => 'Network',
-        5 => 'Cyber security'
+        1 => [
+            'id' => 1,
+            'title' => 'IT',
+            'slug' => 'it'
+        ],
+        2 => [
+            'id' => 2,
+            'title' => 'Technique',
+            'slug' => 'techno'
+        ],
+        3 => [
+            'id' => 3,
+            'title' => 'Computers',
+            'slug' => 'comps'
+        ],
+        4 => [
+            'id' => 4,
+            'title' => 'Design',
+            'slug' => 'design'
+        ],
+        5 => [
+            'id' => 5,
+            'title' => 'Network',
+            'slug' => 'net'
+        ],
+        6 => [
+            'id' => 6,
+            'title' => 'Cyber security',
+            'slug' => 'cyber-security'
+        ]
     ];
     private static array $news = [
         0 => [
