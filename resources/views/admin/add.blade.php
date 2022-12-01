@@ -15,9 +15,9 @@
             </div>
             <div class="form-group">
                 <label for="newsCategory">Категория новости</label>
-                <select name="category" id="newsCategory" class="form-control">
+                <select name="category_id" id="newsCategory" class="form-control">
                     @forelse($categories as $item)
-                        <option @if ($item['id'] == old('category')) selected
+                        <option @if ($item['id'] == old('category_id')) selected
                                 @endif value="{{ $item['id'] }}">{{ $item['title'] }}</option>
                     @empty
                         <option value="0" selected>Нет категории</option>
@@ -26,15 +26,15 @@
             </div>
             <div class="form-group mt-2">
                 <label for="small-desc">Short Description</label>
-                <input name="small-desc" type="text" class="form-control" id="small-desc" placeholder="Enter short description here" value="{{old('small-desc')}}" required>
+                <input name="description" type="text" class="form-control" id="small-desc" placeholder="Enter short description here" value="{{old('description')}}" required>
             </div>
             <div class="form-group mt-2">
                 <label for="img">Img Url</label>
-                <input name="img" type="text" class="form-control" id="img" placeholder="Enter url link here" value="{{old('img')}}" required>
+                <input name="image-url" type="text" class="form-control" id="img" placeholder="Enter url link here" value="{{old('image-url')}}" required>
             </div>
             <div class="form-group mt-2">
                 <label for="desc">Full Description</label>
-                <textarea name="desc" class="form-control" id="desc" rows="6">{{old('desc')}}</textarea>
+                <textarea name="text" class="form-control" id="desc" rows="6">{{old('text')}}</textarea>
             </div>
             <button type="submit" class="btn btn-primary mt-2">Add New</button>
         </form>
