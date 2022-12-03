@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class NewsController extends Controller
     }
     public function categories()
     {
-        return view('categories')->with('categories', News::getCategories());
+        return view('categories')->with('categories', Categories::getCategories());
     }
     public function category($idx)
     {

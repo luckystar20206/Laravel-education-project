@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categories;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -13,7 +14,7 @@ class IndexController extends Controller
     {
         return view('admin.index');
     }
-    public function addNew(Request $request, News $news)
+    public function addNew(Request $request, News $news, Categories $categories)
     {
         if ($request->isMethod('post')) {
             $new = $request->all();
@@ -25,7 +26,7 @@ class IndexController extends Controller
             return redirect()->route('news.index');
         }
         return view('admin.add', [
-            'categories' => $news->getCategories()
+            'categories' => $categories->getCategories()
         ]);
     }
 }
