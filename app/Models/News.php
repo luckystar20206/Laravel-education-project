@@ -8,8 +8,8 @@ class News
 {
     public static function getCategoryNews($idx): array
     {
-        $path = storage_path() . "/app/news.json";
-        $jsonNews = json_decode(file_get_contents($path), true);
+        $jsonNews = static::getNews();
+
         return array_filter($jsonNews, function ($new) use ($idx) {
             return $new["category_id"] == $idx;
         });
@@ -23,8 +23,7 @@ class News
 
     public static function getNew($idx): bool|array
     {
-        $path = storage_path() . "/app/news.json";
-        $jsonNews = json_decode(file_get_contents($path), true);
+        $jsonNews = static::getNews();
 
         if (array_key_exists($idx, $jsonNews)) {
             return $jsonNews[$idx];
