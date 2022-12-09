@@ -17,8 +17,7 @@ class News
 
     public static function getNews(): array
     {
-        $path = storage_path() . "/app/news.json";
-        return json_decode(file_get_contents($path), true);
+        return json_decode(Storage::disk('local')->get('news.json'), true);
     }
 
     public static function getNew($idx): bool|array

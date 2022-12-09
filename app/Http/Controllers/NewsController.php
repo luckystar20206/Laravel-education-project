@@ -5,26 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Categories;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
     public function index()
     {
-        return view('news')->with('news', News::getNews());
+        $news = DB::table('news')->get();
+        return view('news')->with('news', $news);
     }
     public function categories()
     {
-        return view('categories')->with('categories', Categories::getCategories());
+        $categories = DB::table('categories')->get();
+        return view('categories')->with('categories', $categories);
     }
     public function category($idx)
     {
-        $news = News::getCategoryNews($idx);
+        $news = DB::table('news')
+            ->where('category_id', $idx)
+            ->get();
         return view('news')->with('news', $news);
     }
     public function showOne($idx)
     {
-        $new = News::getNew($idx);
-
+        $new = DB::table('news')->find($idx);
         if ($new) {
             return view('new')->with('new', $new);
         }

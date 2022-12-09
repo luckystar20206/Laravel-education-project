@@ -7,11 +7,11 @@
 @section('content')
     <main>
         <div class="content-new">
-            <img class="bg-card" alt="media" src="{{$new['image-url']}}">
-            <h2>{{$new['title']}}</h2>
-            <h4>{{$new['description']}}</h4>
+            <img class="bg-card" alt="media" src="{{ $new->{'image-url'} }}">
+            <h2>{{ $new->title }}</h2>
+            <h4>{{ $new->description }}</h4>
             <p class="new-main-text">
-                {{$new['text']}}
+                {{ $new->text }}
             </p>
         </div>
     </main>

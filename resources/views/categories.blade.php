@@ -7,9 +7,9 @@
 @section('content')
     <ul>
         @foreach ($categories as $key => $el)
-            <a href="{{route('news.category', $key)}}">
+            <a href="{{route('news.category', $el->id)}}">
                 <li>
-                    {{$el['title']}}
+                    {{$el->title}}
                 </li>
             </a>
         @endforeach
