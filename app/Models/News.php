@@ -2,31 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Storage;
+use App\Models\Categories;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class News
+class News extends Model
 {
-    public static function getCategoryNews($idx): array
-    {
-        $jsonNews = static::getNews();
+    use HasFactory;
 
-        return array_filter($jsonNews, function ($new) use ($idx) {
-            return $new["category_id"] == $idx;
-        });
-    }
+    protected $fillable = ['title', 'text', 'description', 'category_id', 'image-url'];
 
-    public static function getNews(): array
-    {
-        return json_decode(Storage::disk('local')->get('news.json'), true);
-    }
-
-    public static function getNew($idx): bool|array
-    {
-        $jsonNews = static::getNews();
-
-        if (array_key_exists($idx, $jsonNews)) {
-            return $jsonNews[$idx];
-        }
-        return false;
+    public function category() {
+        return $this->belongsTo(Categories::class, 'category_id')->first();
     }
 }

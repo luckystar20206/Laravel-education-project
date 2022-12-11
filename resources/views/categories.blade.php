@@ -6,12 +6,14 @@
 @endsection
 @section('content')
     <ul>
-        @foreach ($categories as $key => $el)
-            <a href="{{route('news.category', $el->id)}}">
+        @forelse ($categories as $el)
+            <a href="{{route('news.categories.category', $el)}}">
                 <li>
                     {{$el->title}}
                 </li>
             </a>
-        @endforeach
+        @empty
+            <p>Нет категорий</p>
+        @endforelse
     </ul>
 @endsection

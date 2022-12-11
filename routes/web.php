@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\CategoriesController as AdminCategoriesController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\NewsController;
@@ -25,8 +27,22 @@ Route::name('admin.')
     ->prefix('admin')
     ->namespace('Admin')
     ->group(function () {
-        Route::get('/', [IndexController::class, 'index'])->name('index');
-        Route::match(['get', 'post'], '/add', [IndexController::class, 'addNew'])->name('add');
+        Route::get('/', [AdminNewsController::class, 'index'])->name('index');
+        Route::match(['get', 'post'], '/create', [AdminNewsController::class, 'create'])->name('create');
+        Route::get('/edit/{news}', [AdminNewsController::class, 'edit'])->name('edit');
+        Route::post('/update/{news}', [AdminNewsController::class, 'update'])->name('update');
+        Route::delete('/destroy/{news}', [AdminNewsController::class, 'destroy'])->name('destroy');
+
+        Route::name('categories.')
+            ->prefix('categories')
+            ->namespace('Categories')
+            ->group(function () {
+                Route::get('/', [AdminCategoriesController::class, 'index'])->name('index');
+                Route::match(['get', 'post'], '/create', [AdminCategoriesController::class, 'create'])->name('create');
+                Route::get('/edit/{categories}', [AdminCategoriesController::class, 'edit'])->name('edit');
+                Route::post('/update/{categories}', [AdminCategoriesController::class, 'update'])->name('update');
+                Route::delete('/destroy/{categories}', [AdminCategoriesController::class, 'destroy'])->name('destroy');
+            });
     });
 
 Route::name('news.')
@@ -34,9 +50,14 @@ Route::name('news.')
     ->namespace('News')
     ->group(function () {
         Route::get('/', [NewsController::class, 'index'])->name('index');
-        Route::get('/{idx}', [NewsController::class, 'showOne'])->where('idx', '[0-9]+')->name('new');
-        Route::get('/categories', [NewsController::class, 'categories'])->name('categories');
-        Route::get('/categories/{idx}', [NewsController::class, 'category'])->where('idx', '[0-9]+')->name('category');
+        Route::get('/{news}', [NewsController::class, 'showOne'])->name('new');
+        Route::name('categories.')
+            ->prefix('categories')
+            ->namespace('Categories')
+            ->group(function () {
+                Route::get('all', [CategoriesController::class, 'index'])->name('index');
+                Route::get('/{idx}', [CategoriesController::class, 'category'])->name('category');
+            });
     });
 
 Route::get('/info', [InfoController::class, 'index'])->name('info');

@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Storage;
+use App\Models\News;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Categories
+class Categories extends Model
 {
-    public static function getCategories(): array
-    {
-        return json_decode(Storage::disk('local')->get('categories.json'), true);
+    use HasFactory;
+
+    protected $fillable = ['title', 'slug'];
+
+    public function news() {
+        return $this->hasMany(News::class, 'category_id')->get();
     }
 }
