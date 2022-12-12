@@ -11,6 +11,13 @@
             @csrf
             <div class="form-group">
                 <label for="title">Title</label>
+                @if ($errors->has('title'))
+                    <div class="alert alert-danger" role="alert">
+                        @foreach($errors->get('title') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
                 <input
                     name="title" type="text" class="form-control"
                     id="title" placeholder="Enter title here"
@@ -20,6 +27,13 @@
             </div>
             <div class="form-group">
                 <label for="newsCategory">Категория новости</label>
+                @if ($errors->has('category_id'))
+                    <div class="alert alert-danger" role="alert">
+                        @foreach($errors->get('category_id') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
                 <select name="category_id" id="newsCategory" class="form-control">
                     @forelse($categories as $item)
                         <option @if ($item['id'] == $news->category_id || $item['id'] == old('category_id')) selected
@@ -31,6 +45,13 @@
             </div>
             <div class="form-group mt-2">
                 <label for="small-desc">Short Description</label>
+                @if ($errors->has('description'))
+                    <div class="alert alert-danger" role="alert">
+                        @foreach($errors->get('description') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
                 <input
                     name="description" type="text"
                     class="form-control" id="small-desc"
@@ -41,6 +62,13 @@
             </div>
             <div class="form-group mt-2">
                 <label for="img">Img Url</label>
+                @if ($errors->has('image-url'))
+                    <div class="alert alert-danger" role="alert">
+                        @foreach($errors->get('image-url') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
                 <input
                     name="image-url" type="text"
                     class="form-control" id="img"
@@ -51,6 +79,13 @@
             </div>
             <div class="form-group mt-2">
                 <label for="desc">Full Description</label>
+                @if ($errors->has('text'))
+                    <div class="alert alert-danger" role="alert">
+                        @foreach($errors->get('text') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
                 <textarea class="form-control" name="text" id="desc" rows="6">
                     {{$news->text ?? old('text')}}
                 </textarea>

@@ -20,6 +20,15 @@ class NewsController extends Controller
         $news = new News();
 
         if ($request->isMethod('post')) {
+            $tableNameCategory = (new Categories())->getTable();
+            $this->validate($request, [
+               'title' => 'required|min:3|max:20',
+               'text' => 'required|min:3',
+                'description' => 'required',
+                'image-url' => 'required',
+                'category_id' => "required|exists:{$tableNameCategory},id",
+            ]);
+
             $news->fill($request->all());
             $news->save();
             // $request->flash();

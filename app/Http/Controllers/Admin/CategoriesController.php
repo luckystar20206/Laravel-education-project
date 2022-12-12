@@ -20,6 +20,11 @@ class CategoriesController extends Controller
         $categories = new Categories();
 
         if ($request->isMethod('post')) {
+            $this->validate($request, [
+                'title' => 'required|min:3|max:20',
+                'slug' => 'required|min:3',
+            ]);
+
             $categories->fill($request->all());
             $categories->save();
             // $request->flash();

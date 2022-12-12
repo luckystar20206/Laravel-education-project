@@ -11,6 +11,13 @@
             @csrf
             <div class="form-group">
                 <label for="title">Title</label>
+                @if ($errors->has('title'))
+                    <div class="alert alert-danger" role="alert">
+                        @foreach($errors->get('title') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
                 <input
                     name="title" type="text" class="form-control"
                     id="title" placeholder="Enter title here"
@@ -20,6 +27,13 @@
             </div>
             <div class="form-group">
                 <label for="title">Slug</label>
+                @if ($errors->has('slug'))
+                    <div class="alert alert-danger" role="alert">
+                        @foreach($errors->get('slug') as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
                 <input
                     name="slug" type="text" class="form-control"
                     id="slug" placeholder="Enter slug here"
